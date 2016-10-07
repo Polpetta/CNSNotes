@@ -108,14 +108,16 @@ The fragmentation in IPv4 have some issue:
 \end{itemize}
 This result in a deprecation in IPv6 and limited to source-based fragmentation.
 
-\paragraph{Fragmentation in CCN} In CCN there are two messages types:
+\subsection{Fragmentation in CCN} In CCN there are two messages types:
 \begin{enumerate}
   \item Interest message
   \item Content object
 \end{enumerate}
 In the packets, the name it's not limited. The problem is that maybe you have a
 very long name that not fit in a packet, and to have to fragment an interests.
-So how can a router forward the request if the interest is fragmented?
+
+\subsubsection{Interests fragmentation} So how can a router forward the request
+if the interest is fragmented?
 Intermediate fragmentation & reassembly for interests is unavoidable. The
 router need to wait for all the interest, read the name, split it again and
 send to the next \textit{hop}.
@@ -123,5 +125,29 @@ send to the next \textit{hop}.
 When you split a packet of an interest you can number the part of the interest,
 and you can compute a signature per segment.
 
-For the content fragmentation, there is the problem that the router have to
-cache the same content with different MTU, and this is something unavoidable.
+\subsubsection{Content fragmentation} For the content fragmentation, there is
+the problem that the router have to cache the same content with different MTU,
+and this is something unavoidable.
+Also, in today's internet packet fragments might not follow same path. In
+CCN/NDN all content fragments \textit{always} follow the same path, but out of
+order delivery is possible, event between adjacent routers. Parallel links with
+different speeds and/or loss/error.
+
+\paragraph*{FIGOA: Fragmentation with Integrity Guarantees and Optional
+Authentication} How can you authenticate a fragment? The source can send
+individual segment, but if a intermediary router split another time the router,
+it cannot sign it again.
+\textbf{FIGOA} supports:
+\begin{itemize}
+  \item Cut-through switching & optional intermediate reassembly
+  \item Security via \textit{Delayed (Incremental) Authentication}
+  \item Also supports integrity with optional authenticity
+\end{itemize}
+This idea isn't CCN/NDN specific.
+To authenticate a fragment you can do in this way: for a very big content you
+can split it and put only a portion of the hash in every fragment $H^1$, $H^2$
+etc...). When a fragment came to the router he will froward it and wait for the
+least one. If the least it's not correctly verified it gets "killed" and not
+forwarded. In this way the Consumer will time-out.
+Hash is computed gradually and FIGOA works with out-of-order fragments.
+With this method, the router can never cheat and send to you fake content.
