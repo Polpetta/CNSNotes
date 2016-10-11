@@ -1,0 +1,122 @@
+\section{CNN - Content Centric Networks}
+TCP is a complicate protocol, and originally the Internet was designed to allow
+people to use remote services easily. But in the last 20 years there were a lot
+of deep changes in the nature of Internet communication. In fact originally
+Internet was designed like a private club, but nowadays this isn't true. People
+use Internet and produce a lot of information (social networks, video, etc).
+Some of the original things are still here and are still used, e.g. emails, but
+some new aspects and problems have been arising: IoT, cloud, etc.
+
+In addition, Internet was designed for a small and friendly world, not for an
+hostile one, and the story of the Internet security isn't a success story. A
+lot of security solutions came later and they were retrofitted and incremental:
+SSH, HTTPS, etc.
+
+There's the need of a new Internet architecture: FIA (Future Internet
+Architecture). For almost 150 years, in fact, communication means "a way to
+connecting devices", but now the information itself is more important: what
+matters is the content, not the host it come from. The action of pushing
+something on the web is more rare than the action of pulling that information:
+this is why the information matters, more that where it come from. Content
+distribution is common, but actually it's not performed very well: the main goal
+of CCN is to create a scalable content distribution. In a classical
+architecture, content is required by the devices and this isn't scalable.
+
+\subsection{Architecture}
+Every content has a name (like URIs) and there can be three roles:
+\begin{itemize}
+  \item \textbf{consumer};
+  \item \textbf{producer};
+  \item \textbf{router}.
+\end{itemize}
+The same device can play different roles in different contexts. A consumer is
+\textbf{interested} by some contents; the interest is like a request and the
+consumer asks for some contents. There is no source or destination addresses.
+After it produces, the content can be everywhere, and this is why there is
+no destination address. The interest is forwarded from one router to another
+until it reaches the producer. If the content doesn't exist, the producer
+discards the interest. Otherwise it sends the content. The router may have (and
+it should too) have a cache, thus it can store the contents for future
+interests.
+\subsubsection{Router}
+A router has:
+\begin{itemize}
+  \item \textbf{PIT}: Pending Interest Table;
+  \item \textbf{CS}: Content Store (cache);
+  \item \textbf{FIB}: Forwarding Information Base.
+\end{itemize}
+
+A router can understand and recognize duplicate interests by checking the PIT,
+so it doesn't propagate duplicates and processes them when the content arrives:
+it's impossible to receive the same content more than once if the router uses
+PIT and CS.
+
+\paragraph*{Security}
+The approach to the security is different in CCN: a "normal" router doesn't
+look into packets, and data are authenticated because they are emitted from
+the endpoint of a secure pipe. In CCN, contents can came from everywhere and it
+makes the access control more difficult. The producer couldn't know how popular
+the content is, and the consumer has to trust the content it receives.
+
+The content has three fields:
+\begin{itemize}
+  \item \textbf{Name}, which has to match with the name of the content. There's
+no limit to the length of the name;
+  \item \textbf{Data};
+  \item \textbf{Signature}, performed with a public/private key system.
+\end{itemize}
+The digital signature provides integrity and data authenticity; data must be
+hashed before they are signed.
+
+CCN doesn't specify how to encrypt secure contents: it's all about the
+application, which can restrict access control, for example:
+\begin{itemize}
+  \item encrypting one with a symmetric key;
+  \item distributing the symmetric key to authorized consumers.
+\end{itemize}
+CCN is PKI-agnostic, so the network layer has not a mandatory security (which
+also happens for the classical architecture of Internet): security is
+application specific. Routers can verify content signature to check that
+it's not a fake; they don't verify interests, because it would be an
+unnecessary effort.
+
+Consumers haven't prefix. This means that until they produce a content they
+can't be attacked. However, consumers are required to verify content
+signatures: they are stupid if they don't!
+
+Name is very revealing! That's an important problem for privacy (privacy is an
+enemy for security, and vice-versa). Another problem is caching: it's a kind of
+an history.
+
+There are two types of DoS attacks:
+\begin{itemize}
+  \item \textbf{interest flooding}\footnote{generating random interests};
+  \item \textbf{content poisoning}\footnote{introduction of fake contents}. It
+can be \textbf{reactive} (the content is compromised at the level of the
+router) or \textbf{proactive} (a producer generates some fake contents and a
+consumer, or more than one, requests that content; the fake will be cached and
+that's it!).
+\end{itemize}
+In conclusion, cache helps attackers, but it's necessary!
+
+\subsection{Complete roles view}
+\begin{itemize}
+  \item \textbf{Producer}:
+  \begin{itemize}
+    \item \textit{announces} name prefix;
+    \item \textit{names and signs} content packets;
+    \item \textit{injects contents into the network} by answering interests.
+  \end{itemize}
+  \item \textbf{Consumer}:
+  \begin{itemize}
+    \item \textit{generates interests} referring to the content by name;
+    \item \textit{receives contents, verifies signature} and decrepit if
+necessary;
+  \end{itemize}
+  \item \textbf{Router}:
+  \begin{itemize}
+    \item \textit{routes interests} based on name prefixes;
+    \item \textit{remembers} where interests come from;
+    \item \textit{caches content} (optionally).
+  \end{itemize}
+\end{itemize}
