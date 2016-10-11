@@ -118,7 +118,7 @@ very long name that not fit in a packet, and to have to fragment an interests.
 
 \subsubsection{Interests fragmentation} So how can a router forward the request
 if the interest is fragmented?
-Intermediate fragmentation & reassembly for interests is unavoidable. The
+Intermediate fragmentation \& reassembly for interests is unavoidable. The
 router need to wait for all the interest, read the name, split it again and
 send to the next \textit{hop}.
 
@@ -139,7 +139,7 @@ individual segment, but if a intermediary router split another time the router,
 it cannot sign it again.
 \textbf{FIGOA} supports:
 \begin{itemize}
-  \item Cut-through switching & optional intermediate reassembly
+  \item Cut-through switching \& optional intermediate reassembly
   \item Security via \textit{Delayed (Incremental) Authentication}
   \item Also supports integrity with optional authenticity
 \end{itemize}
