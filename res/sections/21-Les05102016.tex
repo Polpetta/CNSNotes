@@ -1,11 +1,11 @@
 \section{CNN - Content Centric Networks}
 TCP is a complicate protocol, and originally the Internet was designed to allow
 people to use remote services easily. But in the last 20 years there were a lot
-of profound changes in the nature of Internet communication. Infact originally
+of profound changes in the nature of Internet communication. In fact originally
 Internet was designed like a private club, but nowadays this isn't true. People
-use Internet and produce a lot of informations (social networks, video, etc).
+use Internet and produce a lot of information (social networks, video, etc).
 Some of the original things are still here and are still used, e.g. emails, but
-some new aspects and problems have been araised: IoT, cloud, etc.
+some new aspects and problems have been arose: IoT, cloud, etc.
 
 In addition, Internet was designed for a small and friendly world, not for an
 hostile one, and the story of the Internet security isn't a success story. A
@@ -15,7 +15,7 @@ SSH, HTTPS, etc.
 There's the need of a new Internet architecture: FIA (Future Internet
 Architecture). For almost 150years, in fact, communication means "a wire to
 connecting devices", but now the information itself is more important: what
-matters is the content, notthe host it come from. The action of pushing
+matters is the content, not the host it come from. The action of pushing
 something on the web is more rare than the action of pulling that information:
 this is why the information matters, more that where it come from. Content
 distribution is common, but actually i not performed very well: the main goal
@@ -46,14 +46,14 @@ A router has:
   \item \textbf{FIB}: Forwarding Information Base.
 \end{itemize}
 
-A router canunderstand and recognize duplicate interests by checking the PIT,
+A router can understand and recognize duplicate interests by checking the PIT,
 so it doesn't propagate duplicates and processes them when the content arrives:
 it's impossible to receive the same content more than once if the router uses
 PIT and CS.
 
 \subsection{Security}
 The approach to the security is different in CCN: a "normal" router doesn't
-look into packets, and data are authenticated because they are emaneted from
+look into packets, and data are authenticated because they are emitted from
 the endpoint of a secure pipe. In CCN, contents can came from everywhere and it
 makes the access control more difficult. The producer couldn't know how popular
 the content is, and the consumer has to trust the content it receives.
@@ -63,19 +63,19 @@ The content has three fields:
   \item \textbf{Name}, which has to match with the name of the content. There's
 no limit to the length of the name;
   \item \textbf{Data};
-  \item \textbf{Signature}, performed witha  public/private key system.
+  \item \textbf{Signature}, performed with a public/private key system.
 \end{itemize}
 The digital signature provides integrity and data authenticity; data must be
 hashed before they are signed.
 
-CCN doesn't specify how to encript secure contents: it's all about the
+CCN doesn't specify how to encrypt secure contents: it's all about the
 application, which can restrict access control, for example:
 \begin{itemize}
-  \item encripting one with a symmetric key;
-  \item distributing the symmetric tkey to authorized consumers.
+  \item encrypting one with a symmetric key;
+  \item distributing the symmetric key to authorized consumers.
 \end{itemize}
 CCN is PKI-agnostic, so the network layer has not a mandatory security (which
-also happens for the classical architecture of Interner): security is
+also happens for the classical architecture of Internet): security is
 application specific. Routers can verify content signature to check it's not a
 fake; they don't verify interests, because it would be an unnecessary effort.
 
@@ -84,18 +84,18 @@ can't be attacked. However, consumers are required to verify content
 signatures: they are stupid if they don't!
 
 Name is very revealing! That's an important problem for privacy (privacy is an
-enemy for security, and viceversa). Another problem is caching: it's a kind of
+enemy for security, and vice-versa). Another problem is caching: it's a kind of
 an history.
 
 There are two types of DoS attacks:
 \begin{itemize}
   \item \textbf{interest flooding} (= generating random interests);
   \item \textbf{content poisoning} (= introduction of fake contents). It can be
-\textbf{reactive} (the content is compromized at the level of the router) or
+\textbf{reactive} (the content is compromised at the level of the router) or
 \textbf{proactive} (a producer generates some fake contents and a consumer, or
 more than one, requests that content; the fake will be cached and that's it!).
 \end{itemize}
-In conclusion, cache helps attakers, but it's necessary!
+In conclusion, cache helps attackers, but it's necessary!
 
 \subsection{Complete roles view}
 \begin{itemize}
@@ -108,7 +108,7 @@ In conclusion, cache helps attakers, but it's necessary!
   \item \textbf{Consumer}:
   \begin{itemize}
     \item \textit{generates interests} referring to the content by name;
-    \item \textit{reveives contents, verifies signature} and decrypts if
+    \item \textit{receives contents, verifies signature} and decrepit if
 necessary;
   \end{itemize}
   \item \textbf{Router}:
