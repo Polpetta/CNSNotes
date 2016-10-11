@@ -148,15 +148,16 @@ content in the cache and deliver to many user. This problem it's called
   \end{itemize}
 \end{itemize}
 \end{itemize}
-We can check signatures to verify the content, but it's expensive for routers because
-the basically don't know who's the producer. How could they know that? The producer can
-insert a kind of certificate (or a pointer to that) in the content, so the router can 
-verify that, but it's expensive and complicated. 
-A better idea is to allow consumers to complain fake contents: when they verify signatures
-and detect a fake content they can notify this to the router. So router verify the signature
-itself and can detect a fake content, in a more cheaper way. But how could the router know 
-whether the consumer is a good guy or not? The consumer has to sign its complain packets, but
-in this way the consumer exposes itself to the network, so this is a very bad approach for
+We can check signatures to verify the content, but it's expensive for routers
+because the basically don't know who's the producer. How could they know that?
+The producer can insert a kind of certificate (or a pointer to that) in the
+content, so the router can verify that, but it's expensive and complicated.
+A better idea is to allow consumers to complain fake contents: when they verify
+signatures and detect a fake content they can notify this to the router. So
+router verify the signature itself and can detect a fake content, in a more
+cheaper way. But how could the router know whether the consumer is a good guy
+or not? The consumer has to sign its complain packets, but in this way the
+consumer exposes itself to the network, so this is a very bad approach for
 consumer's privacy!!
 
 In the end, we can say that:
@@ -165,10 +166,11 @@ In the end, we can say that:
 \textbf{Network-layer trust and content poisoning are inseparable.}
 \end{center}
 
-\subparagraph*{Interest Key Binding Rule (IKB): } 
-An interest must reflect the trust context of the consumer's application, thus nothing it (easily) enforceable at the network-layer.
+\subparagraph*{Interest Key Binding Rule (IKB): }
+An interest must reflect the trust context of the consumer's application, thus
+nothing it (easily) enforceable at the network-layer.
 
-\subparagraph*{IKB (CCN): } 
+\subparagraph*{IKB (CCN): }
 An interest must reflect public key of the content producer.
 
 \mbox{} \\
