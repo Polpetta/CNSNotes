@@ -1,0 +1,55 @@
+\section{Security}
+Important principles about security:
+\begin{itemize}
+  \item It's difficult to provide a definition of security. Security it's not "a
+  product", it's rather a "process", which needs to be managed properly. It
+  involve a lot of procedure, more than "products".
+  \item Nothing can be 100\% secure.
+  For example with credit card, there is a given amount of fraud. Refund people
+  from a fraud it's costly for a bank, but spend money to make the system more
+  secure can be more expensive than refund people.
+  \item The security of a system is equivalent to the security of it's less
+secure component\footnote{Also know as rule of the weakest link}.
+  \item Security by obscurity never works.
+  \item Cryptography is a powerful tool but this it's not enough!\footnote{"The
+protection provided by encryption is based on the fact that most people would
+rather eat liver than do mathematics" - Bill Neugent}
+  \item Do not rely on users\footnote{"Given a choice between dancing pigs and
+security, users will pick dancing pigs everytime" - Prof. Ed Felten (Princeton
+University)}.
+\end{itemize}
+To give a definition of a security it's better to list the basic security
+properties that a secure system needs to have:
+\begin{itemize}
+  \item Confidentiality: to prevent unauthorized disclosure of the information
+  \item Integrity: to prevent unauthorized modification of the information
+  \item Availability: to guarantee access to information
+  \item Authentication: to prove the claimed identity can be Data or Entity
+authentication
+  \item Non repudiation: to prevent false denial of performed actions
+  \item Authorization: "What Alice can do"
+  \item Auditing: to securely record evidence of performed actions
+  \item Attack-tolerance: ability to provide some degree of service after
+failures or attacks
+  \item Disaster recovery
+  \item ??
+\end{itemize}
+
+There are different security mechanisms, that we will see during the course.
+For example randomness, hash functions, hash chain, MIC, MAC, HMAC, Time
+Stamping are widely used.
+
+In security we need to know who is the adversary of the system. Also, it's
+important to know what adversary can do. There are also different type of
+attack that an adversary can implement:
+\begin{itemize}
+  \item Passive: the attacker can only read any information
+  \begin{itemize}
+    \item Tempest (signal intelligence)
+    \item Packet Sniffing
+  \end{itemize}
+  \item Active: the attacker can read, modify, generate and destroy the system.
+\end{itemize}
+
+Today, a common attack it's with the big data, where an attacker can
+profile users.
