@@ -57,17 +57,20 @@ the distributed content service.
 There are three solutions to this problem:
 \begin{enumerate}
   \item A solution could be caching but with delayed requests. But how long
-should we display the requests? We could delay the request as long as the
+should we delay the requests? We could delay the request as long as the
 first time that   took to fetch the first time the content. In this way it's
-impossible distinguish a content that \textit{hop} to the producer and the
+impossible to distinguish a content that \textit{hop} to the producer and the
 content that it's in the router cache. This will still improve the bandwidth
 utilization, but it won't change the latency.
 
-  \item ??
+  \item For content distribution traffic a good idea is to use a random delay 
+  or a content-specific delay. 
 
   \item Another solution to this problem could come from the \textit{producer}:
-we can make the content of the producer unpredictable, so the attacker cannot
-guess the origin of the content.
+we can make the name of the content unpredictable, so the attacker cannot
+guess the origin of the content. This is a good idea for low-latency (interactive)
+traffic, but it doesn't apply very well to content distribution traffic, where the
+names should be explicative.
 
 \end{enumerate}
 
