@@ -1,4 +1,4 @@
-\section{CNN - Content Centric Networks}
+\chapter{CNN - Content Centric Networks}
 TCP is a complicate protocol, and originally the Internet was designed to allow
 people to use remote services easily. But in the last 20 years there were a lot
 of deep changes in the nature of Internet communication. In fact originally
@@ -22,7 +22,7 @@ distribution is common, but actually it's not performed very well: the main goal
 of CCN is to create a scalable content distribution. In a classical
 architecture, content is required by the devices and this isn't scalable.
 
-\subsection{Architecture}
+\section{Architecture}
 Every content has a name (like URIs) and there can be three roles:
 \begin{itemize}
   \item \textbf{consumer};
@@ -38,7 +38,7 @@ until it reaches the producer. If the content doesn't exist, the producer
 discards the interest. Otherwise it sends the content. The router may have (and
 it should too) have a cache, thus it can store the contents for future
 interests.
-\subsubsection{Router}
+
 A router has:
 \begin{itemize}
   \item \textbf{PIT}: Pending Interest Table;
@@ -99,7 +99,7 @@ that's it!).
 \end{itemize}
 In conclusion, cache helps attackers, but it's necessary!
 
-\subsection{Complete roles view}
+\section{Complete roles view}
 \begin{itemize}
   \item \textbf{Producer}:
   \begin{itemize}
