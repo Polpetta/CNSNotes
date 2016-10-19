@@ -1,0 +1,140 @@
+\section{Password Vulnerabilities}
+There are different type of attaks:
+\begin{itemize}
+  \item Offline dictionary attack: for example LinkedIn some time ago
+  \item Specific account attack: when an account of a specific person is
+targetted %targetted?
+  \item Popular password attack
+  \item Passeord guessing against single user
+  \item Workstation hijacking: an attacker can copy data from a computer
+  \item Exploiting user mistakes: an example copy the password in a piece of
+paper
+  \item Exploiting multimple password use: you should use different passwords
+for different systems
+  \item Electronic monitoring
+\end{itemize}
+
+There are some countermeasures:
+\begin{itemize}
+  \item Stop unauthorized access to password file
+  \item Intrusion detection measures
+  \item Account lockout mechanisms
+  \item Policies against using common passwords but rather hard to guess
+passwords
+  \item Training \& enforcement of policies
+  \item Automatic workstation logout
+  \item Encrypted network links
+\end{itemize}
+
+Passowrd are not stored in a database. Passowrd are hashed in a database. For
+security reasons, a \textit{salt} is used with a password to make more
+difficult for an attacker to guess the password given an hash.
+
+
+The UNIX implementation is composed by:
+\begin{itemize}
+  \item Original scheme:
+  \begin{itemizee}
+    \item 8 character password form 56-bit key
+    \item 12 bit salt used to modify DES encryption into a one-way hash function
+    \item 0 value repeatedly encrypted 25 times
+    \item output translated to 11 character sequence
+  \end{itemizee}
+  \item Improved Implementation:
+  \begin{itemize}
+    \item Have other, stronger, hash/salt variants
+    \item Many systems now use MD5:
+    \begin{itemize}
+      \item With 48 bit salt
+      \item Password length is unlimited
+      \item Is hashed with 1000 times inner loop
+      \item Produces 128 bit hash
+    \end{itemize}
+    \item OpenBSD uses Blowfish block cipher based hash algorithm called
+Bcrypt: it uses 128 bit salt to create 192 bit hash value
+  \end{itemize}
+\end{itemize}
+This implementation it's not secure: with 50 million tests an attacker can
+decrypt it in 80 min.
+
+\paragraph*{Password Cracking}
+There are different type of attacks:
+\begin{itemize}
+  \item Dictionary attacks: try each word then obvious variants in large
+dictionaty against hash in password file
+  \item Rainbow table attacks. Steps:
+  \begin{itemize}
+    \item Precompute tables of hash values for all salts
+    \item A mammoth table of hash values
+    \item E.g. 1.4GB table cracks 99.9\% of alphanumeric Windows passwords in
+13.8 secs
+    \item Not feasible if larger salt is used
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Password Choices}
+\begin{itemize}
+  \item Users may pack short passwords
+  \begin{itemize}
+    \item E.G. 3\% were 3 chars or less, easily guessed
+    \item System can reject choices that are too short
+  \end{itemize}
+  \item Users may pick guessable passwords
+\end{itemize}
+What can we do:
+\begin{itemize}
+  \item Can block offline guessing attacks by denyinh access to encrypted
+passowrd
+  \begin{itemize}
+    \item Make available only to privileged users
+    \item Often using a separate shadow passord file
+  \end{itemize}
+  \item Still ave vulnerabilities
+  \begin{itemize}
+    \item Exploit OS bug
+    \item Accident with permissions making it readable
+  \end{itemize}
+\end{itemize}
+The first idea so it's to use a better password. There are some techniques:
+\begin{itemize}
+  \item User education: teach the user how to choose a password
+  \item Computer-generated passwords: but are difficult to remember
+  \item Reactive password checking
+  \item Proactive password chacking: check if the passowrd follow some defined
+rules
+  \begin{itemize}
+    \item Rule enforcement plus user advice, for example:
+    \begin{itemize}
+      \item 8+ chars, upper/lower/numeric/punctation
+      \item May not suffice
+    \end{itemize}
+    \item Password cracker: time and space issues
+    \item Markov Model
+    \begin{itemize}
+      \item Generates guessable password
+      \item Hence reject any password it might generate
+    \end{itemize}
+    \item Bloom Filter
+    \begin{itemize}
+      \item Use to build table based on dictionaty using hashes
+      \item Check desired password against this table
+      \item Very used in constrained devices
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Smart Card}
+\begin{itemize}
+  \item Credit-card like
+  \item Has own processor, memory, I/O ports
+  \begin{itemize}
+    \item Wired or wireless access by reader
+    \item May have crypto co-processor
+    \item ROM, PROM, E-PROM
+  \end{itemize}
+\end{itemize}
+
+\section{Access Control}
+
+The prevention of unauthorized use of a resource, including the prevention of
+use of a resource in an unauthoried way.
