@@ -1,0 +1,74 @@
+\section{On the Security of Next Generation Air-traffic Communications}
+
+\subsection{Safety and Security}
+The failure from a safety point of view is coming from a bug/internal
+problems/user input. The failure from a secure point of view is coming from a
+malicious actions.
+In air traffic only safety was considered.
+
+\subsection{Air Traffic Control - PSR}
+\begin{itemize}
+	\item Primary Surveillance Radar (PSR)
+	\begin{itemize}
+		\item Ground based radar
+		\item Measures the time difference between the signal transmission and 
+		reflection
+	\end{itemize}
+\end{itemize}
+
+\subsection{Air Traffic Control - SSR}
+\begin{itemize}
+	\item Secondary Surveillance Radar (SSR)
+	\item Inspired by Identify Friend or Fow (IFF) during WWII
+	\item Transponder-based interrogation
+	\item Mode A: identification code only
+	\item Mode C: identification code and barometric altitude
+	\item Mode S: selective addressing to interrogate just one aircraft
+	\item Mode S is used in Traffic Alert and Collision Avoidance System
+\end{itemize}
+
+\subsection{ATC Today}
+
+PSR and SSR were around for like 40 years, and now they are synchronized in one 
+system.
+
+The modern air-traffic navigation systems are moving to the satellite 
+navigation (like GPS).
+
+\subsubsection{Problems of ATC}
+\begin{itemize}
+	\item Old technology
+	\item Enormous cost of operations
+	\item It's difficult to have coverage in all parts of the world
+	\item PSR
+	\begin{itemize}
+		\item Does not provide identity
+		\item Often reports false targets
+		\item High transmission power required for long-range performance
+		\item Expensive to install and maintain
+	\end{itemize}
+\end{itemize}
+
+\subsection{Air Traffic Management of Tomorrow - ADS} The solution for the 
+tomorrow is the ADS-B system, that will be mandatory in 2020.
+\begin{itemize}
+	\item \textbf{A}utomatic: Always on (no explicit interrogation necessary)
+	\item \textbf{D}ependent: On-board system provides surveillance information 
+	to other parties
+	\item \textbf{S}urveillance: Provides precise position, altitude, speed, 
+	heading, identification, ...
+	\item \textbf{B}roadcast: Sent to any aircraft or ground station.
+\end{itemize}
+
+\subsubsection{Security in ADS-B}
+\begin{itemize}
+	\item No authentication
+	\item No authorization
+	\item No confidentiality
+	\item No integrity
+\end{itemize}
+ADS-B system assumes:
+\begin{itemize}
+	\item Received GPS data can be trusted
+	\item Data broadcast over 1090ES data link can be trusted
+\end{itemize}
