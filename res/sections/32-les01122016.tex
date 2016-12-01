@@ -1,0 +1,32 @@
+\subsection{Attack on Verifier}
+
+An Attacker can try to impersonate the \textit{Verifier}, and try to DOS the 
+\textit{prover}. Aversart forces \textit{Prover} to do work causing Denial of 
+Service}. To mitigate, Prover must offer authenticated request. But an 
+adversary can use the \textit{replay} attack, coping the authentication and 
+send requests to the \textit{provers}. An adversary can \textit{reorder} the 
+requests, or delay it.
+\begin{itemize}
+	\item \textit{Verifier}'s attestation request must be authenticated
+	\begin{itemize}
+		\item By the wat, authentication is, in itself, a form of DoS
+		\item So, it must be light-weight $\to$ no Public key crypto?
+	\end{itemize}
+\end{itemize}
+\begin{itemize}
+	\item Authentication requires:
+	\begin{itemize}
+		\item Key(s)
+		\begin{itemize}
+			\item Shared secret key
+			\item Verifier public key (in ROM)
+			\item Access-restricted PUF
+		\end{itemize}
+		\item Freshness \& Timeliness
+		\begin{itemize}
+			\item Challenges
+			\item Sequence numbers $=$ counter
+			\item Timestamps
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
