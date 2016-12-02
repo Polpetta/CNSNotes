@@ -1,0 +1,18 @@
+\section{Scalable Embedded Device Attestation}
+
+\begin{enumerate}
+	\item \textit{Verifier} selects random device ($D_1$) initializes attestation
+	\item Spanning tree is created rooted at $D_1$
+	\item Each device gets attested by its parent (leaves first)
+	\item Parents accumulate results and report to their parent
+	\item $D_1$ reports overall result to \textit{verifier}
+\end{enumerate}
+
+Remember that this system is vulnerable to physical attacks. How can we handle 
+physical attacks? If an attacker compromise every device we're done.
+
+\subsection{Physical Attacks}
+In physical attacks, we need at least one good device; so an attacker can 
+attack in two ways: physical and through software.
+Each physically attacked device is inaccessible for non-negligible period, to 
+check if a device is alive, it have to send an heartbeat.
