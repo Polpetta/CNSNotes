@@ -1,0 +1,106 @@
+% chapter 1 one the book
+\section{Computer Security introduction}
+
+Computer security is not simple, it involves a lot of other topics and
+knowledge.
+
+During the years, there was evolution of the attacks, because during the years
+there was also a improvement of security. Security requires regular monitoring
+to be sure that everything it's ok, you have to remember that security isn't a
+product.
+
+Sometime security is also seen as a impediment to using a system.
+
+What are the key component of a security system?
+\begin{itemize}
+  \item Owner: the one that own the data
+  \item Risk: risk of a \textbf{vulnerability} in the system
+  \item Vulnerabilities
+  \item Contermeasures: can stop some \textbf{vulnerabilites} but it can add new
+one.
+  \item Threat agents: give raise to \textbf{threats} to use
+\textbf{vulnerabilities}
+\end{itemize}
+
+\paragraph*{Countermeasures} To mitigate threats we can use come
+countermeasures, and we can:
+\begin{itemize}
+  \item Prevent attacks (for example blocking some IPs). In some case you can't
+prevent
+  \item Detect: when you can't prevent attacks you can detect intrusion/when
+there is an attack (for example for a DoS you can track the source of the IP
+requests)
+  \item Recover: you should take some countermeasures to stop vulnerabilities,
+but you have to take care of the new vulnerabilities that you can introduce.
+\end{itemize}
+
+\subsection{Scoper of Computer Security}
+In every system there are some processes (for example OS or programs) that use
+some data. It's important to controll the access to the data from the
+processes. Access to the computer facility must be controlled (maybe with a
+access policy).
+
+\paragraph*{Network Security Attacks}
+\begin{itemize}
+  \item Classify as passive or active
+  \item Passive attacks are eavesdropping (the attacker doesn't change the data
+of the packets)
+  \begin{itemize}
+    \item Release of message contents
+    \item Traffic analysis
+    \item Are hard to detect so aim to prevent
+  \end{itemize}
+  \item Active attacks modify/fake data (the attacker change the data of the
+packets)
+  \begin{itemize}
+    \item Masquerade
+    \item Replay
+    \item Modification
+    \item Denial of Service
+    \item Hard to prevent so aim to detect
+  \end{itemize}
+\end{itemize}
+
+\subsection{Security Functional Requirements}
+Tecnical measures means that ??
+Sometime you need also to manage the security. For example in a office you know
+that you can't put your password in the desk!
+
+\subsubsection{Standards}
+There are different standards:
+\begin{itemize}
+  \item X.800, Security Architecture for OSI
+  \item Systematic way of defining requirements for security and characterizing
+approaches to satisfyng them
+  \item Defines:
+  \begin{itemize}
+    \item Security attacks - compromise security
+    \item Securiy mechanism - act to detect, prevent, recover from attack
+    \item Security service - counter security attacks
+  \end{itemize}
+\end{itemize}
+
+%chapter 2 of the book
+\section{Criptology Introduction}
+\subsection{Symmetric Encryption}
+
+The same key is used for encryption and for decryption.
+The problem is that they have to share the key in some way. This is a huge
+limitation, because you can't talk to someone without met it before.
+\subsubsection{Arracking Symmetric Encryption}
+\begin{itemize}
+  \item Cryptanalysis
+  \begin{itemize}
+    \item Rely on nature of the algorithm
+    \item Plus some knowledget of plaintext characteristics
+    \item Event some sample plaintext-ciphertext paris
+    \item Exploits characteristics of algoithm to deduce specific plaintext or
+key
+  \end{itemize}
+  \item Brute force attack. The problem is that the longer is the key the
+longer time it takes.
+\end{itemize}
+
+\subsection{ASymmetric Encryption}
+Asymmetric keys are useful to exchange a simmetric key. Using asymmetric
+encryption it's time-expensive.

@@ -1,0 +1,40 @@
+\chapter{Security threats}
+
+There are different threats.
+
+\section{Consumer Electronics - Entertainment}
+\begin{itemize}
+	\item Privacy preserving search for content, again a case of searching with 
+	encrypted queries
+	\item DRM: the identity of the buyer is embedded in the purchased media 
+	without disclosing it to the seller
+	\item Compression: compression of (encrypted) multimedia data at non-trusted 
+	nodes.
+\end{itemize}
+
+\section{Party Model}
+\begin{itemize}
+	\item Trusted: Service is allowed to observe my data
+	\item Honest but curious:
+	\begin{itemize}
+		\item adversaries correctly follow the protocol specification, yet may 
+		attempt to lean additional information by analyzing the transcript of 
+		messages received during the execution.
+		\item weak security guarantee
+	\end{itemize}
+	\item Malicious:
+	\begin{itemize}
+		\item adversaries may behave arbitrarily and are not bound in any way 
+		%missing stuff!! :(
+	\end{itemize}
+\end{itemize}
+
+\section{An alternative approach: OT + GC}
+OT stands for \textit{Oblivious Transfer}, while GC stands for \textit{Garbled 
+Circuits}.
+\begin{itemize}
+	\item Private computation of any function expressed as a logic (non 
+	recursive) circuit
+	\item Symmetric cryptography
+	\item Inputs at the bit level
+\end{itemize}
