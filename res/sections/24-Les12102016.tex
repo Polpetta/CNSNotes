@@ -1,0 +1,46 @@
+\section{Feature Space Construction for Malware Analysis}
+Malware has some mechanism to copy themselves, and usually they use some system
+bug to steal data.
+
+Malware different from the different use of system call or the different type
+of classes or object used.
+In Android, general attacks are:
+\begin{itemize}
+  \item Premium SMS/Call: incur financial loss
+  \item Theft of device details
+  \item Identity theft
+  \item Payment details: financial loss to user
+  \item Credential theft
+  \item Stealing personal data
+\end{itemize}
+
+A problem with Android APK it's the ability from the attacker to re-sign the
+package with modified data.
+So repackaging programs with malware it's something common.
+
+\subsection{Shannon Entropy}
+\textbf{Shannon Entropy}: A measure of average information content.
+
+Properties:
+\begin{itemize}
+  \item Entropy depends on frequency of occurrence and not on order of
+occurrence
+\item AABBBBCD, ABCDABBB, ABBBACD have the same entropy
+\item Permutation of an input shalll not change its entropy
+\item Similarly, AABBBBCD and ABCCCCDD shall have same entropy
+\item Malware variants created by transposition of instructions can have same
+entropy values
+\item Replacing and instruction by another shall not affect program entropy as
+long as both instruction are likely to be used with almost same probability
+\item Obfuscation of a program may affect entropy
+\end{itemize}
+
+System like gmail or other online service doesn't check the attachements of a
+program because if it's a malware it can affect the whole system. System like
+gmail checks the "magic bit" of the file, but the attacker can change the magic
+bit of the program to fool the system.
+
+Malicious file have a different type of entropy in confront of a legitimate
+file. Also malware have statistically improbabile features in the code.
+So a solution could be calculate the entropy of every feature, link the entropy
+with a ranking system.
