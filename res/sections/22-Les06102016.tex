@@ -1,0 +1,185 @@
+\section{Cache Privacy in CCN}
+
+There is a trade-of between usability and privacy.
+\begin{itemize}
+  \item Router content caching is good for performance
+  \begin{itemize}
+    \item Better bandwidth utilization
+    \item Lower latency, because you only need to go to the nearest router with
+the content. In the worst case you go to the producer
+  \end{itemize}
+\end{itemize}
+
+The problem with cache is the privacy. In fact, there is the possibility of
+attacks:
+\begin{itemize}
+  \item Timing attacks
+  \item Cache harvesting attacks
+\end{itemize}
+
+It's important to identify the adversary. An adversary could be:
+\begin{itemize}
+  \item Another host or router
+  \item A malicious application on victim's device (like Worms, Trojans)
+\end{itemize}
+
+Also, and adversary could be near the consumer or near the producer in the
+network. An adversary could identify the source of the requests. An example is
+for example with governments or with IoT.
+
+\paragraph{Scenario 1: Victim=Consumer}
+For example, if you are in the same location, and you see a request to a
+website, to confirm your doubts you can make the same request\footnote{also
+know as \textit{interest}} and see the time of the reply. If the reply time is
+sort it means that the content was recently cached in a router.
+
+\paragraph{Scenario 2: Victim=Producer}
+Now the Adversary is in an different position of the consumer, in a nearest one.
+In this case if he try to time of the request the attack won't work properly,
+but it can knowledge that somebody recently make a request because it's in the
+cache, but it can't make this the second time, because the content will be in
+the cache. It only knows that someone recently make the requests.
+
+\paragraph{Scenario 3 Victims=Both}
+In this case the attacker there is another actor, and the talkers are Alice and
+Bob. Bob can asks for the Alice public key, and adversaries can listen for the
+keys because they're fetched in the routers. And adversary can require the
+Alice keys to know if Bob has requested recently the Alice key.
+
+This if it's not in a internal network cloud be an attack.
+
+\subsection{Countermeasures}
+
+To solve this problem could be delete the cache content, but it's a bad idea,
+because the network will return to be content centric. The strength of CCN is
+the distributed content service.
+
+There are three solutions to this problem:
+\begin{enumerate}
+  \item A solution could be caching but with delayed requests. But how long
+should we delay the requests? We could delay the request as long as the
+first time that   took to fetch the first time the content. In this way it's
+impossible to distinguish a content that \textit{hop} to the producer and the
+content that it's in the router cache. This will still improve the bandwidth
+utilization, but it won't change the latency.
+
+  \item For content distribution traffic a good idea is to use a random delay 
+  or a content-specific delay. 
+
+  \item Another solution to this problem could come from the \textit{producer}:
+we can make the name of the content unpredictable, so the attacker cannot
+guess the origin of the content. This is a good idea for low-latency (interactive)
+traffic, but it doesn't apply very well to content distribution traffic, where the
+names should be explicative.
+
+\end{enumerate}
+
+So there are two types of traffic: private and non-private traffic. Also there
+are different communication types:
+\begin{itemize}
+  \item Low-latency (interactive) traffic. We could use unpredictable content
+name, but what if the are many people that want the same streaming? Like a
+subscribed TV.
+  \item Content distribution traffic; details in paper, IEEE ICDCS'13. We can
+introduce different solutions:
+  \begin{itemize}
+    \item Random delay. You deliver the content with some random delay. It's an
+interesting approach, because if the adversary ask for the first time the
+content he will wait for the reply delay, otherwise he will have different
+delays everytime. The problem it's that it's not the best solution for this
+problem.
+    \item Content-specific delay.
+  \end{itemize}
+
+  \item The user can ask to the producer to send private content.
+\end{itemize}
+
+There is another exploitation. You can use the pit to use the collision to
+understand the requests that a user make.
+
+\section{Dos/DDoS in CCN}
+
+What is the Dos/DDos resistance of CCN?
+Some current DoS + DDoS attacks become irrelevant in the CCN architecture.
+Reasons:
+\begin{itemize}
+  \item Content caching mitigates targeted DoS. The networks absorbs the
+attacks. A problem is when the attacker ask for different content, but in this
+case it will be clear that it's an attacker.
+  \item Content is not forwarded without prior PIT state set up by interest(s)
+  \item Multiple interests for the same content are collapsed
+  \item Only one copy of content per "interested" interface is returned
+  \item Consumer can't be "hosed" with unsolicited content
+\end{itemize}
+
+There are also attack on the infrastructure
+\begin{itemize}
+  \item Loop-holing/black-holing
+  \item Interest flooding
+  \item Router resource exhaustion
+\end{itemize}
+
+Attack on Consumers plus router caches:
+\begin{itemize}
+  \item Content flooding
+  \item Cache pollution
+  \item Content/cache poisoning. This could be a problem because an attacker
+can ask for random content, and this will use router and resources. What can
+we do?
+\begin{itemize}
+  \item Unilateral rate limiting/throttling. The producer will take only
+interests coming from areas without a lot of invalid requests.
+  \item Collaborative rate limiting/throttling. In this case router share
+information about prefixes and rates information. The problem it's that this
+collaboration it's not free because you need to share this information with the
+other router, sending other data.
+\end{itemize}
+There are different problem for content poisoning.
+\begin{itemize}
+  \item Adversary is on the path to producer. An evil router can change the
+content in the cache and deliver to many user. This problem it's called
+\textit{amplification}.
+  \begin{itemize}
+    \item Intercepts genuine interest, replies with fake content
+    \item Content settles in routers
+  \end{itemize}
+  \item Adversary is not on the path to producer
+  \begin{itemize}
+    \item Anticipates demand for content
+    \item Issues own interest(s), replies with fake content
+    \item Content settles in routers
+  \end{itemize}
+\end{itemize}
+\end{itemize}
+We can check signatures to verify the content, but it's expensive for routers
+because the basically don't know who's the producer. How could they know that?
+The producer can insert a kind of certificate (or a pointer to that) in the
+content, so the router can verify that, but it's expensive and complicated.
+A better idea is to allow consumers to complain fake contents: when they verify
+signatures and detect a fake content they can notify this to the router. So
+router verify the signature itself and can detect a fake content, in a more
+cheaper way. But how could the router know whether the consumer is a good guy
+or not? The consumer has to sign its complain packets, but in this way the
+consumer exposes itself to the network, so this is a very bad approach for
+consumer's privacy!!
+
+In the end, we can say that:
+
+\begin{center}
+\textbf{Network-layer trust and content poisoning are inseparable.}
+\end{center}
+
+\subparagraph*{Interest Key Binding Rule (IKB): }
+An interest must reflect the trust context of the consumer's application, thus
+nothing it (easily) enforceable at the network-layer.
+
+\subparagraph*{IKB (CCN): }
+An interest must reflect public key of the content producer.
+
+\mbox{} \\
+Consumers obtain and validate keys, using:
+\begin{itemize}
+	\item pre-installed root keys;
+	\item Key Name Service (KNS);
+	\item global search-based service.
+\end{itemize}

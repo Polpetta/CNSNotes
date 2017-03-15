@@ -1,0 +1,51 @@
+\chapter{Control Plane Saturation Attack and Countermeasures in Software
+defined Networking}
+
+\section{Concept}
+We tipical have \textbf{Data Plane} that decides what to do with packetss coming
+from an interface. It makes use of routing and forwarding tables.
+There are \textbf{Control Plane} that esablishes the state in routers.
+
+This devices are specialized, and there is lack of abstraction on the Control
+Plane.
+
+\subsection{Software Defined Networking}
+Thee idea behind SDN is to have some software abstraction, with differente
+control plane in the same hardware.
+The idea is to take the Control Plane away from the hardware and to move it in
+the "software" layer.
+
+\subsubsection{OpenFlow}
+\begin{itemize}
+  \item Key enabler for SDN
+  \item Communication protocol between Data Plane and Control Plane
+  \item Routing is based on network flows (TCP + IP + port + etc)
+  \item Flow rules are dictated by the Controller
+  \item Controller can collect statistics from switches
+  \item Controller can install new flow rules:
+  \begin{itemize}
+    \item Proactively (pre-install rules)
+    \item Reactively ("on-demand"). Issues related:
+    \begin{itemize}
+      \item Scalability: Every "unknow" flow is forwarded to the Control
+Plane: Possible Control Plane saturation attack (lile DoS)
+      \item Responsiveness
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\paragraph*{Control Plane Saturation attack}
+\begin{itemize}
+  \item Aims at incapacitating the Control Plane
+  \item Forces a target switch to flood the Control Plane with
+\textbf{PACKET\_IN} requests, generating requests for unknow flows.
+  \item Particularly strong using \textbf{SYN} Flooding. This are difficult to
+detect, and the target is the controller: non end-to-end countermeasures can be
+used.
+\end{itemize}
+The solution is using \textbf{Avant Guard}, that handle in a better way the
+\textbf{SYN} request. But there are problems also with this solutions. So
+another way to solve the problem is using \textbf{LineSwitch}.
+The Goal of LineSwith is to reduce the need for proxy, and the idea is to proxy
+with some probability $P_P$, and count every time we were unable to proxy the
+traffic per IP.
